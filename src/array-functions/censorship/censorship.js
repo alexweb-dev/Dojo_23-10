@@ -27,6 +27,11 @@ Don't mutate the parameter.
 */
 
 // TODO add your code here
+function censor(s, forbiddenWord) {
+  return s.map((s) => {
+    return s.split(' ').map((word) => (word === forbiddenWord ? '*'.repeat(word.length) : word)).join(' ');
+  });
+}
 
 // Begin of tests
 const assert = require("assert");
@@ -71,3 +76,4 @@ assert.deepStrictEqual(
 );
 
 // End of tests
+console.log("GJ");

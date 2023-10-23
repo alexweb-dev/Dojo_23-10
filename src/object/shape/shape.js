@@ -25,9 +25,43 @@ class Shape {
 }
 
 // TODO add your code here
-
+class Rectangle extends Shape{
+  constructor(width, height){
+    super();
+    this.width = width;
+    this.height = height;
+  }
+    area() {
+      return this.width * this.height;
+    }
+}
+class Triangle extends Shape{
+  constructor(base,height){
+    super();
+    this.base = base;
+    this.height = height;
+  }
+    area(){
+      return (this.base * this.height)/2;
+    }
+}
+class Circle extends Shape{
+  constructor(radius){
+    super();
+    this.radius = radius;
+  }
+    area(){
+      return Math.PI *(this.radius) ** 2;
+    }
+}
+class Square extends Rectangle{
+constructor(side){
+  super(side, side);
+}
+}
 // Begin of tests
 const assert = require("assert");
+const { log } = require("console");
 assert.strictEqual(typeof Shape, "function", "Shape class is undefined");
 assert.strictEqual(
   typeof new Shape().area,
@@ -104,3 +138,4 @@ if (typeof Square === "function") {
 }
 
 // End of tests
+console.log("GJ");

@@ -11,6 +11,11 @@ Bonus : do not use a loop
 */
 
 // TODO add your code here
+function uniq(e) {
+  return e.filter((value, i, array) => {
+    return value !== array[i + 1] || i === array.length - 1;
+  });
+}
 
 // Begin of tests
 const assert = require("assert");
@@ -37,7 +42,10 @@ assert.deepStrictEqual(uniq([undefined]), [undefined]);
 assert.deepStrictEqual(uniq([undefined, "a", "a"]), [undefined, "a"]);
 assert.deepStrictEqual(uniq([""]), [""]);
 let test = ["a", "a", "b"];
+const originalTest = test.slice();
 uniq(test);
-assert.deepStrictEqual(test, ["a", "a", "b"], "don't mutate the parameter");
+assert.deepStrictEqual(test, originalTest, "don't mutate the parameter");
+
 
 // End of tests
+console.log("GJ");

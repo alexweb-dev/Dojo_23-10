@@ -9,9 +9,10 @@ Don't mutate the parameter.
 
 // TODO add your code here
 function odd(e){
-  e.filter(nombre => nombre % 2 !== 0);
-
+  const oddArray = e.filter(nombre => nombre % 2 !== 0);
+  return oddArray;
 }
+
 // Begin of tests
 const assert = require("assert");
 
@@ -31,3 +32,4 @@ odd(nums);
 assert.deepStrictEqual(nums, [6, 7], "don't mutate the parameter");
 
 // End of tests
+console.log("GJ");

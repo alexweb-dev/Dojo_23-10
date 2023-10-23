@@ -8,7 +8,29 @@ Create a class `Person` which has :
 */
 
 // TODO add your code here
+class Person {
+  constructor(name, age, weeaboo) {
+    this.name = name;
+    this.age = age;
+    this.weeaboo = weeaboo;
+  }
 
+  introduce() {
+    return `My name is ${this.name} and I am ${this.age}`;
+  }
+
+  greets(name) {
+    if (this.weeaboo) {
+      return `Ohayo ${name}-chan`;
+    } else {
+      return `Hello ${name}`;
+    }
+  }
+
+  match(person) {
+    return this.weeaboo === person.weeaboo;
+  }
+}
 // Begin of tests
 const assert = require("assert");
 assert.strictEqual(typeof Person, "function", "Person class is undefined");
@@ -66,3 +88,4 @@ if (typeof Person === "function") {
 }
 
 // End of tests
+console.log("GJ");
