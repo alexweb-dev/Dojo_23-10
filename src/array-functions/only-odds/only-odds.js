@@ -8,7 +8,10 @@ Don't mutate the parameter.
 */
 
 // TODO add your code here
+function odd(e){
+  e.filter(nombre => nombre % 2 !== 0);
 
+}
 // Begin of tests
 const assert = require("assert");
 

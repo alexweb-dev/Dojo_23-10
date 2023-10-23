@@ -13,5 +13,11 @@ Add you own tests.
 */
 
 // TODO add your code here
+function abbreviate(e){
+    let cutWord = e.split(" ")
+    let firstLetterWordOne = cutWord[0].charAt(0)
+    let firstLetterWordTwo = cutWord[1].charAt(0)
 
+return `${firstLetterWordOne}.${firstLetterWordTwo}`
+}
 module.exports = abbreviate;
