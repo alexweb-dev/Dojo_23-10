@@ -15,7 +15,14 @@ If an argument is not a number, return NaN.
 You can't use Math.pow(), the goal is to recreate this function!
 
 */
-
+function pow(base, exponent) {
+    if (typeof base !== 'number' || typeof exponent !== 'number') {
+        return NaN;
+    } 
+    else {
+        return base ** exponent; 
+    }
+}
 // TODO add your code here
 
 // Begin of tests
@@ -31,4 +38,4 @@ assert.strictEqual(pow("tacos", 2), NaN);
 assert.strictEqual(pow(42), NaN);
 // End of tests
 
-console.log("🎉");
+console.log("GJ");
