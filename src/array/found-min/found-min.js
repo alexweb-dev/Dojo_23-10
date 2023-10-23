@@ -13,5 +13,15 @@ You can't use the function Math.min()
 */
 
 // TODO add your code here
-
+function min(n) {
+if (!n || n.length === 0) {
+    return null;
+  }
+  let nMin = n[0];
+  for (let i = 1; i < n.length; i++) {
+    if (n[i] < nMin) {
+      nMin = n[i];
+    }}
+   return nMin;
+}
 module.exports = min;

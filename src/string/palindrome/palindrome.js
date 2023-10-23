@@ -18,5 +18,20 @@ Add you own tests.
 */
 
 // TODO add your code here
-
+function isPalindrome(e){
+    if(e === null || e === ""){
+        return true;
+    }
+    e = e.toLowerCase();
+    let startCount = 0;
+    let endCount = e.length - 1
+    while(startCount < endCount){
+        if (str[start] !== str[end]) {
+            return false;
+        }
+        start++;
+        end--;
+    }
+    
+}
 module.exports = isPalindrome;

@@ -18,7 +18,7 @@ function getLikes (names){
     else if (length === 2)
     return `${names[0]} and ${names[1]} like this`;
     else {
-        const namesCount = length - 2;
+        const namesCount = length - 1;
         return `${names[0]} and ${namesCount} other people like this`;
       }
 }

@@ -15,5 +15,17 @@ Don't mutate the parameter.
 */
 
 // TODO add your code here
-
+function inverse(numbers){
+    if (!numbers || numbers.length === 0) {
+        return [];
+      }
+    //       METHOD FOR EACH
+    const inverseArray = [];
+    numbers.forEach((number) => {
+      inverseArray.push(-number);
+    });
+    //       METHOD MAP
+    // const inverseArray = numbers.map((number) => -number);
+    return inverseArray;
+}
 module.exports = inverse;

@@ -14,7 +14,38 @@ If the argument is null, return "Illegal argument".
 
 If a value of the argument is not 1 or 2, return "Illegal argument".
 */
+
 // TODO add your code here
+function getScore(e){
+    if (e === null) {
+        return "Illegal argument";
+      }
+    let teamA = 0;
+    let teamB = 0;
+    for (let i=0; i < e.length; i++){
+        if (e[i] != 1 && e [i]!= 2){
+        const nope = "Illegal argument"
+        return nope;
+        }
+        else if (e[i] === 1){
+            teamA += 1;
+        }
+        else if (e[i] === 2){
+            teamB += 1;
+        }
+ }
+ const whoWon = ""
+ if (teamA > teamB){
+    whoWon= `${teamA}-${teamB}: team 1 wins the game`
+ }
+ else if (teamA < teamB){
+    whoWon= `${teamA}-${teamB}: team 2 wins the game`
+ }
+ else if (teamA === teamB){
+    whoWon=`${teamA}-${teamB}:draw`
+ }
+return whoWon;
+}
 
 // Begin of tests
 const assert = require("assert");
