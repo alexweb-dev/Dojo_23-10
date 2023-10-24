@@ -25,6 +25,75 @@ The function should throw :
 */
 
 // TODO add your code here
+function winner(grid) {
+  if (grid === null || !Array.isArray(grid)) {
+    throw new TypeError('Grid can\'t be null and has to be an array');
+  }
+  if (grid.length !== 3 || grid[0].length !== 3 || grid[1].length !== 3 || grid[2].length !== 3) {
+    throw new RangeError('Grid has to be a 3x3');
+  }
+
+  let numberOfX = 0;
+  let numberOfO = 0;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const eachObject = grid[i][j];
+      if (eachObject !== 'X' && eachObject !== 'O' && eachObject !== ' ') {
+        throw new Error('Illegal character');
+      }
+
+      if (eachObject === 'X'|| eachObject === 'O'){
+        if (eachObject === 'X'){
+          numberOfX ++;
+        }
+        else if (eachObject === 'O'){
+          numberOfO ++;
+        }
+      }
+    }
+  }
+  if (numberOfX - numberOfO > 1){
+    return ("X is a cheater")
+  }
+  else if (numberOfX - numberOfO < -1){
+    return ("O is a cheater")
+  }
+
+  for (let i = 0; i < 3; i++) {
+    if (grid[i][0] === grid[i][1] && grid[i][1] === grid[i][2]) {
+      if (grid[i][0] === 'X') {
+        return 'X wins';
+      } else if (grid[i][0] === 'O') {
+        return 'O wins';
+      }
+    }
+  }
+
+  for (let j = 0; j < 3; j++) {
+    if (grid[0][j] === grid[1][j] && grid[1][j] === grid[2][j]) {
+      if (grid[0][j] === 'X') {
+        return 'X wins';
+      } else if (grid[0][j] === 'O') {
+        return 'O wins';
+      }
+    }
+  }
+
+  if (
+    (grid[0][0] === grid[1][1] && grid[1][1] === grid[2][2]) ||
+    (grid[2][0] === grid[1][1] && grid[1][1] === grid[0][2])
+  ) 
+  {
+    if (grid[1][1] === 'X') {
+      return 'X wins';
+    } else if (grid[1][1] === 'O') {
+      return 'O wins';
+    }
+  }
+
+  return 'Cat\'s game';
+}
+
 
 // Begin of tests
 const assert = require("assert");
@@ -111,3 +180,4 @@ assert.throws(() => {
 }, /^Error: Illegal character$/);
 
 // End of tests
+console.log('GJ');
