@@ -22,22 +22,27 @@ function encode(inputString) {
         return "";
     }
     if (typeof inputString !== 'string') {
-        throw new TypeError('Input should be a string')
+        throw new TypeError('Input should be a string');
     }
     let result = "";
     let count = 1;
     for (let i = 0; i < inputString.length; i++) {
-        // À l'intérieur de la boucle for de la fonction encode
         if (inputString[i] === inputString[i + 1]) {
             count++;
-        }
-        else {
-            result += count === 1 ? inputString[i] : inputString[i] + count;
+        } else {
+            if (count === 1) {
+                result += inputString[i];
+            } else if (count === 2) {
+                result += inputString[i] + inputString[i];
+            } else {
+                result += inputString[i] + count;
+            }
             count = 1;
         }
     }
     return result;
 }
+
 // Begin of tests
 const assert = require("assert");
 
