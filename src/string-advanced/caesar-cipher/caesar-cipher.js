@@ -19,15 +19,24 @@ Add you own tests.
 
 // TODO add your code here
 function cipher(word, shift) {
-  if (typeof word !== 'string' || word === null || typeof shift !== 'number' || shift === null) {
+  if (typeof word !== 'string' || word === null || typeof shift !== 'number' || shift === null || !Number.isInteger(shift)) {
     throw new TypeError('Word should be a string and not null, and shift should be a number and not null');
   } else {
-    let characterArray = word.toLowerCase().split('');
-    let count = shift;
     let result = "";
-    for (let i = 0; i < characterArray.length; i++) {
-      let shiftedIndex = (i + count);
-      result += characterArray[shiftedIndex];
+    for (let i = 0; i < word.length; i++) {
+      let char = word[i];
+      if (/[a-z]/.test(char)) {
+        let shiftedCharCode = char.charCodeAt(0) + (shift % 26);
+        if (shiftedCharCode > 'z'.charCodeAt(0)) {
+          shiftedCharCode -= 26;
+        } else if (shiftedCharCode < 'a'.charCodeAt(0)) {
+          shiftedCharCode += 26;
+        }
+        result += String.fromCharCode(shiftedCharCode);
+      } 
+      else {
+        result += char;
+      }
     }
     return result;
   }
@@ -53,9 +62,14 @@ assert.strictEqual(cipher("abcde", 26), "abcde"); // Le décalage de 26 est équ
 assert.strictEqual(cipher("abcd", 0), "abcd"); // Aucun décalage.
 
 // Tests d'erreur
-assert.throws(() => cipher(null, 2), TypeError);
+// Test d'erreur
+assert.throws(() => cipher(null, 2), {
+  name: 'TypeError',
+  message: 'Word should be a string and not null, and shift should be a number and not null'
+});
+
 assert.throws(() => cipher("hello", null), TypeError);
-assert.throws(() => cipher("123", 2), TypeError); // "123" n'est pas une chaîne de caractères.
+assert.strictEqual(cipher("123", 2), "123");
 assert.throws(() => cipher("abcd", 2.5), TypeError); // 2.5 n'est pas un nombre entier.
 
 console.log("gg");
