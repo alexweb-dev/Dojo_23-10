@@ -31,7 +31,48 @@ result : 2
 */
 
 // TODO add your code here
+function sweep(grid, row, column) {
+  if (grid === null || !Array.isArray(grid)) {
+    throw new TypeError('Grid must be an array and cannot be null.');
+  }
 
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j] !== 0 && grid[i][j] !== 1) {
+        throw new TypeError('Grid should only contain values of 0 or 1.');
+      }
+    }
+  }
+
+  if (row === null || typeof row !== 'number' || column === null || typeof column !== 'number') {
+    throw new TypeError('Row and column must be numbers and cannot be null.');
+  }
+
+  if (grid.length < 1 || grid[0].length < 1) {
+    throw new RangeError('Grid width and height must be greater than or equal to one.');
+  }
+
+  if (row < 0 || row >= grid.length || column < 0 || column >= grid[0].length) {
+    throw new RangeError('Row and column are out of bounds.');
+  }
+
+  if (grid[row][column] === 1) {
+    return 'kaboom';
+  }
+
+  let bombCount = 0;
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      const newRow = row + i;
+      const newColumn = column + j;
+      if (newRow >= 0 && newRow < grid.length && newColumn >= 0 && newColumn < grid[0].length) {
+        bombCount += grid[newRow][newColumn];
+      }
+    }
+  }
+
+  return bombCount;
+}
 // Begin of tests
 const assert = require("assert");
 
@@ -95,3 +136,4 @@ assert.throws(() => {
 }, RangeError);
 
 // End of tests
+console.log('GJ');
