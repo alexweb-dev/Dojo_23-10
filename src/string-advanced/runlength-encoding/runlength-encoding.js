@@ -17,12 +17,55 @@ Add you own tests.
 */
 
 // TODO add your code here
-
+function encode(inputString) {
+    if (inputString === null) {
+        return "";
+    }
+    if (typeof inputString !== 'string') {
+        throw new TypeError('Input should be a string')
+    }
+    let result = "";
+    let count = 1;
+    for (let i = 0; i < inputString.length; i++) {
+        // À l'intérieur de la boucle for de la fonction encode
+        if (inputString[i] === inputString[i + 1]) {
+            count++;
+        }
+        else {
+            result += count === 1 ? inputString[i] : inputString[i] + count;
+            count = 1;
+        }
+    }
+    return result;
+}
 // Begin of tests
 const assert = require("assert");
 
 assert.strictEqual(typeof encode, "function");
 assert.strictEqual(encode.length, 1);
-// TODO add your tests:
+
+// Test avec un seul caractère, pas de compression
+assert.strictEqual(encode("a"), "a");
+
+// Test avec deux caractères identiques, pas de compression
+assert.strictEqual(encode("aa"), "aa");
+
+// Test avec trois caractères identiques, compression en "a3"
+assert.strictEqual(encode("aaa"), "a3");
+
+// Test avec différents caractères et compression
+assert.strictEqual(encode("aaaabbccca"), "a4bbc3a");
+
+// Test avec une chaîne vide, retourne une chaîne vide
+assert.strictEqual(encode(""), "");
+
+// Test avec un argument null, retourne une chaîne vide
+assert.strictEqual(encode(null), "");
+
+// Test avec un argument non-string, déclenche une erreur TypeError
+assert.throws(() => {
+    encode(123);
+}, TypeError);
 
 // End of tests
+console.log("gg");
