@@ -21,20 +21,84 @@ Example:
 * points : [1, 1, 1, 2, 2, 2, 1], result : "ad in"
 
 If the argument is null or not an array, throw a TypeError.
-If a value of the argument is null or not a number, throw a TypeError.
-If a value of the argument is not 1 or 2, throw a RangeError.
+    If a value of the argument is null or not a number, throw a TypeError.
+    If a value of the argument is not 1 or 2, throw a RangeError.
 
 Add you own tests.
 
 */
 
 // TODO add your code here
+function getScore(scores) {
+    if (scores === null || !Array.isArray(scores)) {
+        throw new TypeError('The argument should be an Array');
+    }
+    if (scores.length === 0) {
+        throw new TypeError('The scores array should not be empty');
+    }
+    let playerA = 0;
+    let playerB = 0;
+    for (let score of scores) {
+        if (score !== 1 && score !== 2) {
+            throw new RangeError('All scores should be 1 or 2');
+        }
+        if (score === 1) {
+            playerA++;
+        }
+        else if (score === 2) {
+            playerB++;
+        }
+    }
+    const howScoreWorks = ["love", "15", "30", "40"];
+    let result = null;
+    if (playerA >= 3 && playerB >= 3) {
+        if (playerA === playerB) {
+            result = "deuce";
+        }
+        else if (playerA > playerB) {
+            result = playerA === playerB + 1 ? "ad in" : `${howScoreWorks[playerA - 1]}-${howScoreWorks[playerB - 1]}`;
+        }
+        else {
+            result = playerB === playerA + 1 ? "ad out" : `${howScoreWorks[playerA - 1]}-${howScoreWorks[playerB - 1]}`;
+        }
+    } else {
+        result = `${howScoreWorks[playerA]}-${howScoreWorks[playerB]}`;
+    }
+    return result;
+}
 
-// Begin of tests
+
+// Begin Tests
 const assert = require("assert");
 
 assert.strictEqual(typeof getScore, "function");
 assert.strictEqual(getScore.length, 1);
-// TODO add your tests:
 
-// End of tests
+// Test avec le score "40-love"
+assert.strictEqual(getScore([1, 1, 1]), "40-love");
+
+// Test avec le score "15-40"
+assert.strictEqual(getScore([2, 1, 2, 2]), "15-40");
+
+// Test avec le score "deuce"
+assert.strictEqual(getScore([1, 2, 1, 2, 1, 2]), "deuce");
+
+// Test avec le score "ad in"
+assert.strictEqual(getScore([1, 1, 1, 2, 2, 2, 1]), "ad in");
+
+// Modifiez le test avec un tableau vide comme suit
+assert.throws(() => {
+    getScore([]);
+}, (error) => {
+    return error instanceof TypeError; // Vérifie que l'erreur est de type TypeError
+});
+
+// Modifiez également le test avec un score invalide (3) de la même manière
+assert.throws(() => {
+    getScore([1, 2, 3, 1]);
+}, (error) => {
+    return error instanceof RangeError; // Vérifie que l'erreur est de type RangeError
+});
+
+// End Test
+console.log("GJ");

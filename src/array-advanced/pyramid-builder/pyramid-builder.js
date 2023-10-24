@@ -18,6 +18,21 @@ If `n` is null or not a number, throw a TypeError.
 */
 
 // TODO add your code here
+function build(n) {
+  if (n === null || typeof n !== 'number') {
+    throw new TypeError('Value should be a number and not null');
+  } else if (n <= 0) {
+    throw new RangeError('Value should be strictly positive');
+  }
+
+  const result = [];
+  for (let i = 0; i < n; i++) {
+    let row = ' '.repeat(n - i - 1) + '*'.repeat(2 * i + 1) + ' '.repeat(n - i - 1);
+    result.push(row);
+  }
+
+  return result;
+}
 
 // Begin of tests
 const assert = require("assert");
@@ -46,3 +61,4 @@ assert.throws(() => {
   build("a");
 }, TypeError);
 // End of tests
+console.log("gg");
