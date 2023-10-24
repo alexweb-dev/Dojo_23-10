@@ -39,6 +39,9 @@ morseMap.set("..--..", "?");
 morseMap.set("-.-.--", "!");
 
 // TODO add your code here
+function decode(morseCode){
+const words = morseCode.trim().split('  ');
+}
 
 // Begin of tests
 const assert = require("assert");
